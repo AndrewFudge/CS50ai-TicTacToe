@@ -4,6 +4,7 @@ Tic Tac Toe Player
 
 import math
 import copy
+from collections import Counter
 
 X = "X"
 O = "O"
@@ -72,8 +73,34 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
-
+    # can check rows first
+    # then row [index]
+    # then diagnals
+    for row in board:
+        counts = Counter(row)
+        if counts['X'] == 3:
+            return 'X'
+        if counts['O'] == 3:
+            return 'O'
+    for square_index in range(3):
+        counter = 0
+        for row in board:
+            if row[square_index] == 'X':
+                counter += 1
+            elif row[square_index] == 'O':
+                counter -= 1
+            if counter == 3:
+                return 'X'
+            elif counter == -3:
+                return 'O'
+    count_down_diag = Counter([board[0][0], board[1][1], board[2][2]])
+    count_up_diag = Counter([board[2][0], board[1][1], board[0][2]])
+    if count_down_diag['X'] == 3 or count_up_diag['X'] == 3:
+        return 'X'
+    elif count_down_diag['O'] == 3 or count_up_diag['O'] == 3:
+        return 'O'
+    else:
+        return None
 
 def terminal(board):
     """

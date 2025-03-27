@@ -36,11 +36,3 @@ def test_result_returns_error_for_invalid_action():
             [EMPTY, EMPTY, EMPTY]]
     with pytest.raises(Exception):
         result(board, action)
-
-
-# def test_result_returns_x_for_fith_go():
-#     board = [['X', EMPTY, EMPTY],
-#             [EMPTY, 'O', EMPTY],
-#             ['O', EMPTY, 'X']]
-#     result = result(board)
-#     assert result == 'X'
