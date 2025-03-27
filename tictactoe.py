@@ -140,6 +140,9 @@ def minimax(board):
             if updated_score > current_score:
                 current_score = updated_score
                 best_move = action
+                # if score is max, may as well submit early
+                if updated_score == 1:
+                    return best_move
     else:
         current_score = math.inf
         for action in actions(board):
@@ -147,6 +150,9 @@ def minimax(board):
             if updated_score < current_score:
                 current_score = updated_score
                 best_move = action
+                # score is min possible, so return it
+                if updated_score == -1:
+                    return best_move
     return best_move
 
 
