@@ -42,7 +42,6 @@ def player(board):
         raise Exception('Too many of one player on the board!')
             
 
-
 def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
@@ -53,7 +52,6 @@ def actions(board):
             if not square:
                 pos_actions.add((row_index, square_index))
     return pos_actions
-
 
 
 def result(board, action):
@@ -101,6 +99,7 @@ def winner(board):
         return 'O'
     else:
         return None
+
 
 def terminal(board):
     """
@@ -150,6 +149,7 @@ def minimax(board):
                 best_move = action
     return best_move
 
+
 def max_value(board):
     if terminal(board):
         return utility(board)
@@ -157,6 +157,7 @@ def max_value(board):
     for action in actions(board):
         current_score = max(current_score, min_value(result(board, action)))
     return current_score    
+
 
 def min_value(board):
     if terminal(board):
